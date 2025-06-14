@@ -4,7 +4,59 @@
 #define BISPO_MOVE 5
 #define TORRE_MOVE 5
 #define RAINHA_MOVE 8
-#define CAVALO_MOVE 1
+#define CAVALO_MOVE 1 // Número de movimentos que o cavalo pode fazer nesse xadrez, não a quantidade de casas
+
+
+void moverBispo(int passos) {
+    if (passos == 0) return; // quebrar o loop da recursão
+
+    // Loop externo = vertical (Cima)
+    for (int i = 0; i < 1; i++) {
+        // Loop interno = horizontal (Direita)
+        for (int j = 0; j < 1; j++) {
+            printf("Direita\n");
+        }
+        printf("Cima\n");
+    }
+
+    moverBispo(passos - 1);
+}
+void moverTorre(int passos) {
+    if(passos == 0) return; // quebrar o loop da recursão
+    printf("Direita\n");
+    moverTorre(passos - 1);
+}
+
+void moverRainha(int passos) {
+    if(passos == 0) return;
+    printf("Esquerda\n");
+    moverRainha(passos - 1);
+}
+
+void moverCavalo() {
+    
+    for (int i = 0; i < CAVALO_MOVE; i++) { // número de movimentos que o cavalo irá fazer
+        int cima = 0, direita = 0;
+
+        for (int j = 0; j < 3; j++) { // movimentando para cima
+            if (j < 2) {
+                printf("Cima, ");
+                cima++;
+            } else {
+                if (cima != 2) continue; // validação de movimento em L
+                printf("Direita\n");
+                direita++;
+            }
+        }
+
+        // Separador entre movimentos
+        if (cima == 2 && direita == 1) {
+            printf("Movimento concluído.\n\n");
+        } else {
+            printf("Movimento inválido.\n\n");
+        }
+    }
+}
 
 int main() {
     
@@ -22,45 +74,26 @@ int main() {
     switch(pecaEscolhida) {
         case 0: {
             printf("Você escolheu o Bispo! \n");
-            for(int i = 0; i < BISPO_MOVE; i++) {
-                printf("Cima\n");
-                printf("Direita\n");
-            }
+            moverBispo(BISPO_MOVE);
             break;
         }
         case 1: {
             printf("Você escolheu a Torre! \n");
-            int j = 0;
-            while (j < TORRE_MOVE) {
-                printf("Direita\n");
-                j++;
-            }
+            moverTorre(TORRE_MOVE);
             break;
         }
         case 2: {
             printf("Você escolheu a Rainha! \n");
-            int k = 0;
-            do{
-                printf("Esquerda\n");
-                k++;
-            } while (k < RAINHA_MOVE);
+            moverRainha(RAINHA_MOVE);
             break;
         }
         case 3: {
             printf("Você escolheu o Cavalo!\n");
-            for(int i = 0; i < CAVALO_MOVE; i++) { // Número de movimentos que o cavalo pode fazer
-                // Lógica do movimento do cavalo em L
-                int movements = 0; 
-                while(movements < 2) {
-                    printf("Baixo, ");
-                    movements++;
-                }
-                printf("Esquerda\n");
-            }
+            moverCavalo();
             break;
         }
         default:
-            printf("Peça inválida. Escolha 0 (Bispo), 1 (Torre), 2 (Rainha) ou 3 (Cavalo) \n");
+            printf("Peça inválida. Escolha 0 (Bispo), 1 (Torre), 2 (Rainha) ou 3 (Cavalo) \n"); // exceção
             break;
     }
     return 0;
