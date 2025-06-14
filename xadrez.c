@@ -4,6 +4,7 @@
 #define BISPO_MOVE 5
 #define TORRE_MOVE 5
 #define RAINHA_MOVE 8
+#define CAVALO_MOVE 1
 
 int main() {
     
@@ -13,6 +14,7 @@ int main() {
     printf("Bispo(0)\n");
     printf("Torre(1)\n");
     printf("Rainha(2)\n");
+    printf("Cavalo(3)\n");
     scanf("%d", &pecaEscolhida); // Entrada de dados
 
 
@@ -33,6 +35,7 @@ int main() {
                 printf("Direita\n");
                 j++;
             }
+            break;
         }
         case 2: {
             printf("Você escolheu a Rainha! \n");
@@ -41,9 +44,23 @@ int main() {
                 printf("Esquerda\n");
                 k++;
             } while (k < RAINHA_MOVE);
+            break;
+        }
+        case 3: {
+            printf("Você escolheu o Cavalo!\n");
+            for(int i = 0; i < CAVALO_MOVE; i++) { // Número de movimentos que o cavalo pode fazer
+                // Lógica do movimento do cavalo em L
+                int movements = 0; 
+                while(movements < 2) {
+                    printf("Baixo, ");
+                    movements++;
+                }
+                printf("Esquerda\n");
+            }
+            break;
         }
         default:
-            printf("Peça inválida. Escolha 0 (Bispo), 1 (Torre) ou 2 (Rainha).\n");
+            printf("Peça inválida. Escolha 0 (Bispo), 1 (Torre), 2 (Rainha) ou 3 (Cavalo) \n");
             break;
     }
     return 0;
