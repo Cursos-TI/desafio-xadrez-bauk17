@@ -19,26 +19,26 @@ void moverBispo(int passos) {
         printf("Cima\n");
     }
 
-    moverBispo(passos - 1);
+    moverBispo(passos - 1); // diminuir para quebrar o loop
 }
 void moverTorre(int passos) {
     if(passos == 0) return; // quebrar o loop da recursão
     printf("Direita\n");
-    moverTorre(passos - 1);
+    moverTorre(passos - 1); // diminuir para quebrar o loop
 }
 
 void moverRainha(int passos) {
     if(passos == 0) return;
     printf("Esquerda\n");
-    moverRainha(passos - 1);
+    moverRainha(passos - 1); // diminuir para quebrar o loop
 }
 
 void moverCavalo() {
     
     for (int i = 0; i < CAVALO_MOVE; i++) { // número de movimentos que o cavalo irá fazer
-        int cima = 0, direita = 0;
+        int cima = 0, direita = 0; // inicio das movimentações do cavalo
 
-        for (int j = 0; j < 3; j++) { // movimentando para cima
+        for (int j = 0; j < 3; j++) { // movimentando para cima enquanto j for menor que 2
             if (j < 2) {
                 printf("Cima, ");
                 cima++;
@@ -74,22 +74,22 @@ int main() {
     switch(pecaEscolhida) {
         case 0: {
             printf("Você escolheu o Bispo! \n");
-            moverBispo(BISPO_MOVE);
+            moverBispo(BISPO_MOVE); // move a peça bispo
             break;
         }
         case 1: {
             printf("Você escolheu a Torre! \n");
-            moverTorre(TORRE_MOVE);
+            moverTorre(TORRE_MOVE); // move a peça torre
             break;
         }
         case 2: {
             printf("Você escolheu a Rainha! \n");
-            moverRainha(RAINHA_MOVE);
+            moverRainha(RAINHA_MOVE); // move a peça rainha 
             break;
         }
         case 3: {
             printf("Você escolheu o Cavalo!\n");
-            moverCavalo();
+            moverCavalo(); // move a peça: cavalo
             break;
         }
         default:
